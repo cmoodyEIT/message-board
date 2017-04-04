@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @author = @post.author
+    @comments = @post.comments.eager_load(:commenter)
   end
 
   # GET /posts/new
