@@ -32,7 +32,7 @@ gem 'thin'
 
 gem 'devise'                                                          # https://github.com/plataformatec/devise
 gem 'js-routes'
-
+gem 'bootstrap-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
