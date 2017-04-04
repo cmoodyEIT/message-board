@@ -48,6 +48,9 @@ group :development, :test do
   gem 'delorean'
   gem 'fabrication'
   gem 'mailcatcher'
+  gem 'database_cleaner'
+  gem 'ffaker'
+
 end
 
 group :development do
