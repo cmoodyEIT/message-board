@@ -1,7 +1,21 @@
-h3=@author.name
-p
-  em=@post.title
-  br
-  span=@post.body
-ul.comments
-  =render @comments
+=link_to 'Index', posts_path
+form.post
+  h5
+    =@author.name
+    .small =@post.updated_at.try(:strftime,"%b %-d, %Y")
+  .form-group
+    label Title
+    input#title value=@post.title disabled=(@post.id.present?) name='title'
+  .form-group
+    textarea#body disabled=(@post.id.present?) name='body' =@post.body
+  input#id type='hidden' value=@post.id name='id'
+  button#edit =@post.id.present? ? 'Edit' : 'Save'
+  button class=(@post.id.nil? ? 'hidden' : '')
+    =link_to('Destroy', @post, method: :delete, data: {confirm: 'Are you sure?'})
+  button class=(@post.id.present? ? 'hidden' : '')
+    =link_to 'Cancel', posts_path
+dl.dl-horizontal
+  =render @comments.order(created_at: :asc)
+  dd.hidden#new
+    input
+button#newComment New Comment

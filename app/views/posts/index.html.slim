@@ -1,0 +1,6 @@
+p#notice= notice
+h1 Listing Posts
+dl.dl-horizontal
+  =render @posts.order(created_at: :desc)
+br
+= link_to 'New Post', new_post_path

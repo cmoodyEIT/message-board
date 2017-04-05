@@ -1,3 +1,4 @@
-li
-  span=comment.commenter.name
-  span=comment.body
+dt
+  =comment.commenter.name
+  .smaller=comment.created_at.strftime("%b %-d, %Y")
+dd=comment.body

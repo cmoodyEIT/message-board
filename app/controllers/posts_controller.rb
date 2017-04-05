@@ -17,6 +17,9 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @author = current_user
+    @comments = []
+    render :show
   end
 
   # GET /posts/1/edit

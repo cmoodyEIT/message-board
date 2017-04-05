@@ -1,0 +1,5 @@
+a href="/posts/#{post.id}"
+  dt
+    =post.author.name
+    .smaller=post.created_at.strftime("%b %-d, %Y")
+  dd=post.body
