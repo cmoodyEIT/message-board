@@ -14,7 +14,7 @@ form.post
     =link_to('Destroy', @post, method: :delete, data: {confirm: 'Are you sure?'})
   button class=(@post.id.present? ? 'hidden' : '')
     =link_to 'Cancel', posts_path
-dl.dl-horizontal
+dl.dl-horizontal#comments
   =render @comments.order(created_at: :asc)
   dd.hidden#new
     input

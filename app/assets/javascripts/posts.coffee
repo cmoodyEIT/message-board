@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
 save= (post)->
   if post.id
     $.ajax
@@ -34,5 +35,24 @@ clickEdit = ($event) ->
     save(post)
   $('input,textarea').attr('disabled',val)
   $($event.target).html(button)
+newComment = ($event)->
+  $event.preventDefault()
+  $('dd#new').removeClass('hidden')
+saveComment = ($event)->
+  return unless $event.keyCode == 13
+  id = $('#id').val()
+  $.ajax
+    url: "/posts/#{id}/comments.json"
+    method: 'post'
+    dataType: 'html'
+    data:
+      comment: {body: $($event.target).val()}
+  .done (response) -> $(response).insertBefore('dd#new')
+  $($event.target).val('')
+  $('dd#new').addClass('hidden')
+
+# Add listeners
 $(document).ready ->
   $('#edit').on 'click', clickEdit
+  $('#newComment').on 'click', newComment
+  $('dd#new > input').on 'keydown', saveComment
