@@ -18,4 +18,4 @@ dl.dl-horizontal#comments
   =render @comments.order(created_at: :asc)
   dd.hidden#new
     input
-button#newComment New Comment
+button#newComment class=(@post.id.nil? ? 'hidden' : '') New Comment

@@ -22,6 +22,8 @@ class Post
       method: 'post'
       data:
         post: post
+    .done (response) ->
+      window.location = "/posts/#{response.id}"
 
 class EventHandlers
   constructor: (@post) ->
@@ -39,6 +41,7 @@ class EventHandlers
   newComment: ($event)->
     $event.preventDefault()
     $('dd#new').removeClass('hidden')
+    $('dd#new > input').focus()
   saveComment: ($event)->
     return unless $event.keyCode == 13
     id = $('#id').val()
@@ -56,6 +59,7 @@ class EventHandlers
 $(document).ready ->
   post = new Post
   handler = new EventHandlers(post)
-  $('#edit').on 'click', handler.clickEdit.bind(handler)
-  $('#newComment').on 'click', handler.newComment.bind(handler)
-  $('dd#new > input').on 'keydown', handler.saveComment.bind(handler)
+  $('html').on 'click',   '#edit',          handler.clickEdit.bind(handler)
+  $('html').on 'click',   '#newComment',    handler.newComment.bind(handler)
+  $('html').on 'keydown', 'dd#new > input', handler.saveComment.bind(handler)
+  $('#comments').animate({scrollTop: $('#comments').offset().top},'slow')
