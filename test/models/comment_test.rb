@@ -9,4 +9,18 @@ class CommentTest < ActiveSupport::TestCase
     comment = Fabricate(:comment)
     assert_kind_of Post, comment.post
   end
+
+  def test_validates_commenter_present
+    comment = Comment.new(post: Fabricate(:post))
+    assert_raises(ActiveRecord::RecordInvalid) {comment.save!}
+    comment.commenter = Fabricate(:user)
+    assert comment.save!
+  end
+
+  def test_validates_post_present
+    comment = Comment.new(commenter: Fabricate(:user))
+    assert_raises(ActiveRecord::RecordInvalid) {comment.save!}
+    comment.post = Fabricate(:post)
+    assert comment.save!
+  end
 end

@@ -33,10 +33,11 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get "/posts/#{@post.id}/edit"
-    assert_response :success
-  end
+  #NOTE: Template removed should remove method from controller and route
+  # test "should get edit" do
+  #   get "/posts/#{@post.id}/edit"
+  #   assert_response :success
+  # end
 
   test "should update post" do
     patch "/posts/#{@post.id}", post: { user_id: @post.user_id, body: @post.body, title: @post.title }

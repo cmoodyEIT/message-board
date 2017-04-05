@@ -14,4 +14,12 @@ class PostTest < ActiveSupport::TestCase
       Fabricate(:comment, post: post)
     end
   end
+
+  def test_validates_author_present
+    post = Post.new
+    assert_raises(ActiveRecord::RecordInvalid) {post.save!}
+    post.author = Fabricate(:user)
+    assert post.save!
+  end
+
 end
